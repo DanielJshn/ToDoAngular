@@ -1,20 +1,17 @@
-<div class="register-form">
-    <div class="text">
-       Register
-    </div>
-    <form>
-       <div class="field">
-          <div class="fas fa-envelope"></div>
-          <input type="text" placeholder="Email ">
+<div class="wrapper">
+   <div class="title"><span>Register</span></div>
+   <form action="#">
+       <div class="row">
+           <i class="fas fa-user"></i>
+           <input type="text" placeholder="Email" required />
        </div>
-       <div class="field">
-          <div class="fas fa-lock"></div>
-          <input type="password" placeholder="Password">
+       <div class="row">
+           <i class="fas fa-lock"></i>
+           <input type="password" placeholder="Password" required />
        </div>
-       <button>Sign-Up</button>
-       <div class="link">
-          Account already existe?
-          <a href="#">Login now</a>
+       <div class="row button">
+           <input type="submit" value="Register" />
        </div>
-    </form>
- </div>
+       <div class="login-link">Have an account? <a href="/login">Login now</a></div>
+   </form>
+</div>

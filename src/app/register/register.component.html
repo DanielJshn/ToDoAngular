@@ -1,17 +1,17 @@
 <div class="wrapper">
-   <div class="title"><span>Register</span></div>
-   <form action="#">
-       <div class="row">
-           <i class="fas fa-user"></i>
-           <input type="text" placeholder="Email" required />
-       </div>
-       <div class="row">
-           <i class="fas fa-lock"></i>
-           <input type="password" placeholder="Password" required />
-       </div>
-       <div class="row button">
-           <input type="submit" value="Register" />
-       </div>
-       <div class="login-link">Have an account? <a href="/login">Login now</a></div>
-   </form>
+    <div class="title"><span>Register</span></div>
+    <form (ngSubmit)="register()">
+        <div class="row">
+            <i class="fas fa-user"></i>
+            <input type="email" name="email" [(ngModel)]="email" placeholder="Email" required />
+        </div>
+        <div class="row">
+            <i class="fas fa-lock"></i>
+            <input type="password" name="password" [(ngModel)]="password" placeholder="Password" required />
+        </div>
+        <div class="row button">
+            <input type="submit" value="Register" />
+        </div>
+        <div class="login-link">Have an account? <a [routerLink]="'/login'">Login now</a></div>
+    </form>
 </div>

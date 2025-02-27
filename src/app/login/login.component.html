@@ -1,9 +1,6 @@
 <div class="wrapper">
     <div class="title"><span>Login</span></div>
     <form (ngSubmit)="login()">
-        <!-- Error message from backend -->
-        <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
-
         <div class="row">
             <i class="fas fa-user"></i>
             <input type="email" name="email" [(ngModel)]="email" placeholder="Email" required />
@@ -12,6 +9,7 @@
             <i class="fas fa-lock"></i>
             <input type="password" name="password" [(ngModel)]="password" placeholder="Password" required />
         </div>
+        <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
         <div class="row button">
             <input type="submit" value="Login" />
         </div>

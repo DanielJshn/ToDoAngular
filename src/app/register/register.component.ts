@@ -14,25 +14,25 @@ import { CommonModule } from '@angular/common';
 export class RegisterComponent {
   email: string = '';
   password: string = '';
+  errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) { }
 
   register() {
     if (!this.email || !this.password) {
-      alert('Заполните все поля!');
+      this.errorMessage = '⚠️ Please fill in all fields!';
       return;
     }
-
-    this.authService.register(this.email, this.password).subscribe({
+  
+    this.authService.register({ email: this.email, password: this.password }).subscribe({
       next: (response) => {
-        console.log('Успешная регистрация:', response);
-
+        console.log('✅ Registration successful:', response);
         localStorage.setItem('token', response.token);
-        
         this.router.navigate(['/home']);
       },
       error: (error) => {
-        console.error('Ошибка регистрации:', error);
+        console.error('❌ Registration error:', error);
+        this.errorMessage = error.error?.message || '⚠️ An unknown error occurred!';
       }
     });
   }

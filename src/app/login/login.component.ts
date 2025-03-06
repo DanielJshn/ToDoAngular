@@ -18,7 +18,7 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  login() {
+  loginCheck() {
     if (!this.email || !this.password) {
       this.errorMessage = '⚠️ Please fill in all fields!';
       return;

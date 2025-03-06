@@ -18,7 +18,7 @@ export class RegisterComponent {
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  register() {
+  registerCheck() {
     if (!this.email || !this.password) {
       this.errorMessage = '⚠️ Please fill in all fields!';
       return;

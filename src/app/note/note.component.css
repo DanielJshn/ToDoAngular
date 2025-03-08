@@ -1,29 +1,105 @@
 .page-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh; /* Занимает весь экран */
-    background-color: #faf8e9;
-    padding: 2vh 5vw; /* Отступы адаптивные */
-  }
-  
-  .title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    position: absolute;
-    top: 5vh; /* Поднимаем вверх */
-    left: 50%;
-    transform: translateX(-50%); /* Центрируем */
-    text-align: center;
-  }
-  
-  .notes-container {
-    width: 70vw; /* 70% ширины экрана */
-    max-width: 900px; /* Ограничение, чтобы не раздувался на больших экранах */
-    background: white;
-    padding: 3vh 2vw;
-    border-radius: 1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  /* Занимает весь экран */
+  background-color: #9f9f9f;
+  padding: 2vh 5vw;
+  /* Отступы адаптивные */
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  position: absolute;
+  top: 5vh;
+  /* Поднимаем вверх */
+  left: 50%;
+  transform: translateX(-50%);
+  /* Центрируем */
+  text-align: center;
+}
+
+.add-btn {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 50vw;
+  max-width: 500px;
+  text-align: center;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  gap: 1rem;
+}
+
+.note-input {
+  width: 100%; /* Растянуть на всю ширину контейнера */
+  padding: 0.5rem; /* Отступы внутри */
+  border: 1px solid #ccc; /* Граница */
+  border-radius: 0.5rem; /* Закругления углов */
+  font-size: 1rem; /* Размер шрифта */
+}
+
+.note-input:focus {
+  outline: none; /* Убрать стандартное выделение */
+  border-color: #007bff; /* Подсветка при фокусе */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Тень при фокусе */
+}
+
+.save-btn, .close-btn {
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.save-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.close-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.notes-container {
+  width: 70vw;
+  /* 70% ширины экрана */
+  max-width: 900px;
+  /* Ограничение, чтобы не раздувался на больших экранах */
+  background: white;
+  padding: 3vh 2vw;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

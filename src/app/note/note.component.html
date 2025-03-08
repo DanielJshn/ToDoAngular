@@ -1,7 +1,18 @@
 <div class="page-container">
-    <h1 class="title">My Notes</h1>
-    <div class="notes-container">
-      <!-- Здесь будет остальной контент -->
-    </div>
+  <h1 class="title">My Notes</h1>
+  <button class="add-btn" (click)="openPopup()">Add new</button>
+
+  <div class="notes-container">
+    <!-- Здесь будет остальной контент -->
   </div>
-  
+</div>
+
+<div class="popup" *ngIf="isPopupOpen">
+  <div class="popup-content">
+    <h2>Create Note</h2>
+    <input type="text" placeholder="Note title" [(ngModel)]="noteTitle" class="note-input">
+    <input type="text" placeholder="Note content" [(ngModel)]="noteContent" class="note-input">
+    <button class="save-btn" (click)="saveNote()">Save</button>
+    <button class="close-btn" (click)="closePopup()">Close</button>
+  </div>
+</div>

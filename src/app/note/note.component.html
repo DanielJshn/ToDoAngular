@@ -3,9 +3,23 @@
   <button class="add-btn" (click)="openPopup()">Add new</button>
 
   <div class="notes-container">
-    <!-- Здесь будет остальной контент -->
+    <div 
+      *ngFor="let note of notes" 
+      class="note" 
+      (click)="openPopupNote(note)"
+    >
+      <h3>{{ note.title }}</h3>
+      <p>{{ note.content | slice:0:100 }}...</p> 
+    </div>
   </div>
-</div>
+  
+  <div class="popup2" *ngIf="selectedNote" (click)="closePopup()">
+    <div class="popup-content2" (click)="$event.stopPropagation()">
+      <h3>{{ selectedNote.title }}</h3>
+      <p>{{ selectedNote.content }}</p>
+      <button class="close-btn2" (click)="closePopup()">Закрыть</button>
+    </div>
+  </div>
 
 <div class="popup" *ngIf="isPopupOpen">
   <div class="popup-content">

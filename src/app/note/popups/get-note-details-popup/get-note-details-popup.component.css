@@ -1,0 +1,32 @@
+.popup2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .popup-content2 {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 80vw;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    text-align: center;
+  }
+  
+  .close-btn2 {
+    margin-top: 1rem;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #dc3545;
+    color: white;
+    cursor: pointer;
+  }

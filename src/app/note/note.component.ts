@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { GetNoteDetailsPopupComponent } from "./popups/get-note-details-popup/get-note-details-popup.component";
+import { CreateNotePopupComponent } from "./popups/create-note-popup/create-note-popup.component";
 
 interface Note {
   title: string;
@@ -11,32 +13,29 @@ interface Note {
 @Component({
   selector: 'app-note',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, GetNoteDetailsPopupComponent, CreateNotePopupComponent],
   templateUrl: './note.component.html',
   styleUrls: ['./note.component.css']
 })
 
 
 export class NoteComponent {
-  isPopupOpen = false; 
-  noteTitle = ''; 
-  noteContent = '';
-  notes: { title: string; content: string }[] = [];
+  isPopupOpen = false;
+  selectedNote: Note | null = null;
+  notes: Note[] = [];
 
-  openPopup() {
+  openCreatePopup() {
     this.isPopupOpen = true;
   }
 
-  closePopup() {
+  closeCreatePopup() {
     this.isPopupOpen = false;
   }
 
-  saveNote() {
-    console.log("Note saved:", this.noteTitle, this.noteContent);
-    this.closePopup();
+  saveNote(note: Note) {
+    this.notes.push(note);
+    this.closeCreatePopup();
   }
-
-  selectedNote: Note | null = null;
 
   openPopupNote(note: Note) {
     this.selectedNote = note;
@@ -45,5 +44,4 @@ export class NoteComponent {
   closePopupNote() {
     this.selectedNote = null;
   }
-
 }

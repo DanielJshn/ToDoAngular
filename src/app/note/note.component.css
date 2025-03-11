@@ -47,12 +47,12 @@
 
 @media (max-height: 400px) {
   .title {
-    display: none; /* Скрываем заголовок при уменьшении экрана */
+    display: none; 
   }
 }
 
 @media (max-width: 635px) {
   .title {
-    display: none; /* Скрываем заголовок при уменьшении экрана */
+    display: none; 
   }
 }

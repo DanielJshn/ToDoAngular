@@ -9,18 +9,16 @@
       (click)="openPopupNote(note)"
     >
       <h3>{{ note.title }}</h3>
-      <p>{{ note.content | slice:0:100 }}...</p> 
+      <p>{{ note.description | slice:0:100 }}...</p> 
     </div>
   </div>
 
-  <!-- Попап создания заметки -->
   <app-create-note-popup 
     *ngIf="isPopupOpen" 
     (close)="closeCreatePopup()" 
     (save)="saveNote($event)">
   </app-create-note-popup>
 
-  <!-- Попап просмотра заметки -->
   <app-get-note-details-popup 
     *ngIf="selectedNote" 
     [note]="selectedNote" 

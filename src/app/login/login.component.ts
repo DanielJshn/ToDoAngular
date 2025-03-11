@@ -7,16 +7,16 @@ import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule], 
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
   email: string = '';
   password: string = '';
-  errorMessage: string = ''; 
+  errorMessage: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   loginCheck() {
     if (!this.email || !this.password) {
@@ -27,8 +27,9 @@ export class LoginComponent {
     this.authService.login({ email: this.email, password: this.password }).subscribe({
       next: (response) => {
         console.log('✅ Login successful:', response);
-        localStorage.setItem('token', response.token);
-        this.router.navigate(['/home']);
+        localStorage.setItem('token', response.data.token);
+        console.log('Токен сохранён:', localStorage.getItem('token'));  
+        this.router.navigate(['/note']);
       },
       error: (error) => {
         console.error('❌ Login error:', error);

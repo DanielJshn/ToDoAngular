@@ -1,14 +1,10 @@
+import { Component, OnInit } from '@angular/core';
+import { NoteService, Note } from '../services/note.service';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { GetNoteDetailsPopupComponent } from "./popups/get-note-details-popup/get-note-details-popup.component";
 import { CreateNotePopupComponent } from "./popups/create-note-popup/create-note-popup.component";
-
-interface Note {
-  title: string;
-  content: string;
-}
 
 @Component({
   selector: 'app-note',
@@ -17,31 +13,46 @@ interface Note {
   templateUrl: './note.component.html',
   styleUrls: ['./note.component.css']
 })
-
-
-export class NoteComponent {
+export class NoteComponent implements OnInit {
   isPopupOpen = false;
   selectedNote: Note | null = null;
   notes: Note[] = [];
 
-  openCreatePopup() {
+  constructor(private noteService: NoteService) {}
+
+  ngOnInit(): void {
+    this.loadNotes();  
+  }
+
+  loadNotes(): void {
+    this.noteService.getNotes().subscribe({
+      next: (response) => {
+        if (response?.data && Array.isArray(response.data)) {
+          this.notes = response.data; 
+        }
+  }});
+  }
+
+  openCreatePopup(): void {
     this.isPopupOpen = true;
   }
 
-  closeCreatePopup() {
+  closeCreatePopup(): void {
     this.isPopupOpen = false;
   }
 
-  saveNote(note: Note) {
-    this.notes.push(note);
-    this.closeCreatePopup();
+  saveNote(note: Note): void {
+    this.noteService.createNote(note).subscribe(() => {
+      this.loadNotes(); 
+      this.closeCreatePopup();
+    });
   }
 
-  openPopupNote(note: Note) {
+  openPopupNote(note: Note): void {
     this.selectedNote = note;
   }
 
-  closePopupNote() {
+  closePopupNote(): void {
     this.selectedNote = null;
   }
 }

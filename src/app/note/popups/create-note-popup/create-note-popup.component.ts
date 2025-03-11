@@ -11,16 +11,16 @@ import { FormsModule } from '@angular/forms';
 
 export class CreateNotePopupComponent {
   @Output() close = new EventEmitter<void>();
-  @Output() save = new EventEmitter<{ title: string; content: string }>();
+  @Output() save = new EventEmitter<{ title: string; description: string }>();
 
   noteTitle = '';
-  noteContent = '';
+  noteDescription = '';
 
   saveNote() {
-    if (this.noteTitle.trim() && this.noteContent.trim()) {
-      this.save.emit({ title: this.noteTitle, content: this.noteContent });
+    if (this.noteTitle.trim() && this.noteDescription.trim()) {
+      this.save.emit({ title: this.noteTitle, description: this.noteDescription });
       this.noteTitle = '';
-      this.noteContent = '';
+      this.noteDescription = '';
     }
   }
 }

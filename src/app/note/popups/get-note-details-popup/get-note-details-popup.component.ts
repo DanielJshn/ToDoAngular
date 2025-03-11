@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 interface Note {
   title: string;
-  content: string;
+  description: string;
 }
 
 @Component({
@@ -13,6 +13,6 @@ interface Note {
 })
 
 export class GetNoteDetailsPopupComponent {
-  @Input() note!: { title: string; content: string } | null;
+  @Input() note!: { title: string; description: string } | null;
   @Output() close = new EventEmitter<void>();
 }

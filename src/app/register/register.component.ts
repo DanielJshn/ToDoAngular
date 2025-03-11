@@ -27,8 +27,8 @@ export class RegisterComponent {
     this.authService.register({ email: this.email, password: this.password }).subscribe({
       next: (response) => {
         console.log('✅ Registration successful:', response);
-        localStorage.setItem('token', response.token);
-        this.router.navigate(['/home']);
+        localStorage.setItem('token', response.data.token);
+        this.router.navigate(['/note']);
       },
       error: (error) => {
         console.error('❌ Registration error:', error);

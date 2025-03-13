@@ -55,4 +55,16 @@ export class NoteComponent implements OnInit {
   closePopupNote(): void {
     this.selectedNote = null;
   }
+
+  isTextOverflow(element: HTMLElement): boolean {
+    return element.scrollWidth > element.clientWidth;
+  }
+
+  checkOverflow(event: any) {
+    const element = event.target;
+    if (this.isTextOverflow(element)) {
+      element.style.textOverflow = 'ellipsis';
+    }
+  }
+  
 }

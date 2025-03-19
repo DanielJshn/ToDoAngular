@@ -1,17 +1,19 @@
-<div class="page-container">
-  <h1 class="title">My Notes</h1>
-  <button class="add-btn" (click)="openCreatePopup()">Add new</button>
+<div class="wrapper">
+  <div class="page-container">
+    <h1 class="title">My Notes</h1>
+    <button class="add-btn" (click)="openCreatePopup()">Add new</button>
 
-  <div class="notes-container">
-    <div *ngFor="let note of notes" class="note" (click)="openPopupNote(note)">
-      <h3 (ngAfterViewInit)="checkOverflow($event)">{{ note.title }}</h3>
-      <p (ngAfterViewInit)="checkOverflow($event)">{{ note.description }}</p>
+    <div class="notes-container">
+      <div *ngFor="let note of notes" class="note" (click)="openPopupNote(note)">
+        <h3 (ngAfterViewInit)="checkOverflow($event)">{{ note.title }}</h3>
+        <p (ngAfterViewInit)="checkOverflow($event)">{{ note.description }}</p>
+      </div>
     </div>
   </div>
 
-  <app-create-note-popup *ngIf="isPopupOpen" (close)="closeCreatePopup()" (save)="saveNote($event)">
-  </app-create-note-popup>
-
-  <app-get-note-details-popup *ngIf="selectedNote" [note]="selectedNote" (close)="closePopupNote()">
-  </app-get-note-details-popup>
 </div>
+<app-create-note-popup *ngIf="isPopupOpen" (close)="closeCreatePopup()" (save)="saveNote($event)">
+</app-create-note-popup>
+
+<app-get-note-details-popup *ngIf="selectedNote" [note]="selectedNote" (close)="closePopupNote()">
+</app-get-note-details-popup>

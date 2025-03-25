@@ -18,53 +18,47 @@ export class NoteComponent implements OnInit {
   selectedNote: Note | null = null;
   notes: Note[] = [];
 
-  constructor(private noteService: NoteService) {}
+  constructor(private noteService: NoteService) { }
 
   ngOnInit(): void {
-    this.loadNotes();  
+    this.loadNotes();
   }
 
   loadNotes(): void {
     this.noteService.getNotes().subscribe({
       next: (response) => {
         if (response?.data && Array.isArray(response.data)) {
-          this.notes = response.data; 
+          this.notes = response.data;
         }
-  }});
-  }
-
-  openCreatePopup(): void {
-    this.isPopupOpen = true;
-  }
-
-  closeCreatePopup(): void {
-    this.isPopupOpen = false;
-  }
-
-  saveNote(note: Note): void {
-    this.noteService.createNote(note).subscribe(() => {
-      this.loadNotes(); 
-      this.closeCreatePopup();
+      }
     });
   }
 
-  openPopupNote(note: Note): void {
-    this.selectedNote = note;
+  
+  openPopup(note: Note | null = null): void {
+    this.selectedNote = note; 
+    this.isPopupOpen = true;
   }
 
-  closePopupNote(): void {
+  closePopup(): void {
+    this.isPopupOpen = false;
     this.selectedNote = null;
   }
 
-  isTextOverflow(element: HTMLElement): boolean {
-    return element.scrollWidth > element.clientWidth;
-  }
-
-  checkOverflow(event: any) {
-    const element = event.target;
-    if (this.isTextOverflow(element)) {
-      element.style.textOverflow = 'ellipsis';
+  saveNote(note: Note): void {
+    if (this.selectedNote && this.selectedNote.id !== undefined) {
+      
+      this.noteService.updateNote(this.selectedNote.id, note).subscribe(() => {
+        this.loadNotes();
+        this.closePopup();
+      });
+    } else {
+      
+      this.noteService.createNote(note).subscribe(() => {
+        this.loadNotes();
+        this.closePopup();
+      });
     }
+
   }
-  
 }

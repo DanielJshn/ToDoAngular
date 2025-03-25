@@ -10,8 +10,6 @@
   box-sizing: border-box; 
 }
 
-
-
 .page-container {
   display: flex;
   flex-direction: column;
@@ -25,6 +23,7 @@
   padding: 2vh 5vw;
   position: relative;
 }
+
 .title {
   font-size: 2.5rem;
   font-weight: bold;

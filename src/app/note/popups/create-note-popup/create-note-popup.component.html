@@ -1,10 +1,10 @@
 <div class="popup">
-    <div class="popup-content">
-      <h1 class="title"> Create Note</h1>
-      <input type="text" placeholder="Note title" [(ngModel)]="noteTitle" class="note-input">
-      <input type="text" placeholder="Note content" [(ngModel)]="noteDescription" class="note-input">
-      <button class="save-btn" (click)="saveNote()">Save</button>
-      <button class="close-btn" (click)="close.emit()">Close</button>
-    </div>
+  <div class="popup-content">
+    <h1 class="title">{{ note ? 'Edit Note' : 'Create Note' }}</h1>
+    <input type="text" placeholder="Note title" [(ngModel)]="noteTitle" class="note-input">
+    <input type="text" placeholder="Note content" [(ngModel)]="noteDescription" class="note-input">
+    <button class="save-btn" (click)="saveNote()">Save</button>
+    <button class="close-btn" (click)="close.emit()">Close</button>
   </div>
-  
+</div>
+

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Note {
+  id?: number;
   title: string;
   description: string;
   done?: boolean;
@@ -23,12 +24,13 @@ export class NoteService {
   createNote(note: Note): Observable<Note> {
     return this.http.post<Note>(this.apiUrl, note);
   }
-
-  updateNote(noteId: string, note: Note): Observable<Note> {
-    return this.http.put<Note>(`${this.apiUrl}/noteId?noteId=${noteId}`, note);
+  
+  updateNote(noteId: number, note: Note): Observable<Note> {
+    return this.http.put<Note>(`${this.apiUrl}/${noteId}`, note);
   }
-
-  deleteNote(noteId: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/noteId?noteId=${noteId}`);
+  
+  deleteNote(noteId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${noteId}`);
   }
+  
 }

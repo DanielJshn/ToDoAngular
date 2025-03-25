@@ -13,7 +13,7 @@ import { Note } from '../../../services/note.service';
 export class CreateNotePopupComponent {
   @Input() note: Note | null = null;
   @Output() close = new EventEmitter<void>();
-  @Output() save = new EventEmitter<{ id?: number; title: string; description: string }>();
+  @Output() save = new EventEmitter<{ noteId?: string; title: string; description: string }>();
 
   noteTitle = '';
   noteDescription = '';
@@ -23,12 +23,14 @@ export class CreateNotePopupComponent {
       this.noteTitle = this.note.title;
       this.noteDescription = this.note.description;
     }
+    console.log('Initial Note:', this.note); 
   }
-
+  
   saveNote() {
     if (this.noteTitle.trim() && this.noteDescription.trim()) {
+ 
       this.save.emit({
-        id: this.note?.id,
+        noteId: this.note?.noteId,
         title: this.noteTitle,
         description: this.noteDescription
       });
@@ -36,3 +38,5 @@ export class CreateNotePopupComponent {
     }
   }
 }
+
+  

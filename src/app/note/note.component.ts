@@ -38,7 +38,9 @@ export class NoteComponent implements OnInit {
   openPopup(note: Note | null = null): void {
     this.selectedNote = note; 
     this.isPopupOpen = true;
+    console.log('Selected Note:', this.selectedNote);  // Для отладки
   }
+  
 
   closePopup(): void {
     this.isPopupOpen = false;
@@ -46,19 +48,17 @@ export class NoteComponent implements OnInit {
   }
 
   saveNote(note: Note): void {
-    if (this.selectedNote && this.selectedNote.id !== undefined) {
-      
-      this.noteService.updateNote(this.selectedNote.id, note).subscribe(() => {
+    if (this.selectedNote && this.selectedNote.noteId) {
+      this.noteService.updateNote(this.selectedNote.noteId, note).subscribe(() => {
         this.loadNotes();
         this.closePopup();
       });
     } else {
-      
       this.noteService.createNote(note).subscribe(() => {
         this.loadNotes();
         this.closePopup();
       });
     }
-
+  
   }
 }

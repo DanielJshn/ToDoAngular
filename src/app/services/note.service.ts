@@ -3,11 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Note {
-  id?: number;
+  noteId?: string;  // Замените на строку для UUID
   title: string;
   description: string;
   done?: boolean;
+  isImportant?: boolean;
 }
+
 
 @Injectable({
   providedIn: 'root'
@@ -25,12 +27,15 @@ export class NoteService {
     return this.http.post<Note>(this.apiUrl, note);
   }
   
-  updateNote(noteId: number, note: Note): Observable<Note> {
-    return this.http.put<Note>(`${this.apiUrl}/${noteId}`, note);
+  updateNote(noteId: string, note: Note): Observable<Note> {
+    const url = `${this.apiUrl}/noteId?noteId=${noteId}`;
+    return this.http.put<Note>(url, note);
   }
   
-  deleteNote(noteId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${noteId}`);
-  }
   
+  deleteNote(noteId: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${noteId}`); 
+  }
 }
+  
+
